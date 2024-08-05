@@ -1,29 +1,32 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import Image from "next/image";
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Login() {
   const router = useRouter();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (username && password) {
-      console.log('Attempting to login with', username, password); // Debug log
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
 
-      if (response.ok) {
-        console.log('Login successful'); // Debug log
-        router.push('/wishes');
-      } else {
-        console.error('Error:', await response.json());
+    if (username && password) {
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+
+        if (response.ok) {
+          router.push('/wishes');
+        } else {
+          console.error('Error:', await response.json());
+        }
+      } catch (error) {
+        console.error('Network error:', error.message);
       }
     }
   };
@@ -33,14 +36,7 @@ export default function Login() {
       <div className="flex items-center justify-center flex-1 p-4">
         <div className="bg-white shadow-lg rounded-lg w-full max-w-sm mx-auto p-6">
           <div className="flex justify-center mb-6">
-            <div>
-              <Image
-                src="/instaLogo.png"
-                width={200}
-                height={200}
-                alt="Instagram Logo"
-              />
-            </div>
+            <Image src="/instaLogo.png" width={200} height={200} alt="Instagram Logo" />
           </div>
           <form onSubmit={handleLogin}>
             <div className="mb-4">
@@ -80,13 +76,8 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <footer className="text-sm flex justify-center">
-        <Image
-          src="/footer.png"
-          width={100}
-          height={100}
-          alt="Meta Logo"
-        />
+      <footer className=" text-sm flex justify-center">
+        <Image src="/footer.png" width={100} height={100} alt="Footer Logo" />
       </footer>
     </div>
   );
