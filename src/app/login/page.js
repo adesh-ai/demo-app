@@ -1,4 +1,3 @@
-// src/app/login/page.js
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -10,12 +9,6 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  //   if (username && password) {
-  //     router.push("/wishes");
-  //   }
-  // };
   const handleLogin = async (e) => {
     e.preventDefault();
     if (username && password) {
@@ -43,7 +36,7 @@ export default function Login() {
                 src="/instaLogo.png"
                 width={200}
                 height={200}
-                alt="Picture of the author"
+                alt="Instagram Logo"
               />
             </div>
           </div>
@@ -85,13 +78,13 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <footer className=" text-sm flex justify-center">
+      <footer className="text-sm flex justify-center">
         <Image
-                src="/footer.png"
-                width={100}
-                height={100}
-                alt="Picture of the author"
-              />
+          src="/footer.png"
+          width={100}
+          height={100}
+          alt="Meta Logo"
+        />
       </footer>
     </div>
   );
