@@ -4,7 +4,7 @@ const client = new MongoClient(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-const dbName = 'demodb'; // Replace with your database name
+const dbName = 'demodb'; 
 
 export async function POST(request) {
   const { username, password } = await request.json();
