@@ -12,6 +12,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (username && password) {
+      console.log('Attempting to login with', username, password); // Debug log
       const response = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -19,6 +20,7 @@ export default function Login() {
       });
 
       if (response.ok) {
+        console.log('Login successful'); // Debug log
         router.push('/wishes');
       } else {
         console.error('Error:', await response.json());
